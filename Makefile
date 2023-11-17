@@ -23,14 +23,18 @@ CC=gcc
 STD=c17
 
 # Flags for compiler
-CC_FLAGS=-c         \
-		 -g			\
+CC_FLAGS=-c     \
+		 -g					\
 		 -W         \
 		 -Wall      \
-		 -lm		\
-		 -Wextra	\
+		 -lm				\
+		 -Wextra		\
+		 -fopenmp		\
 		 -lpthread	\
 		 -std=$(STD)
+
+# Flags for linker??
+LINKER_FLAGS=-fopenmp
 
 # The main file (with the main() function)
 MAIN_FILE=main.c
@@ -42,7 +46,7 @@ MAIN_OBJECT=$(BUILD_DIR)/$(MAIN_FILE:.c=.o)
 all: $(BIN_DIR) $(BUILD_DIR) $(PROJ_NAME)
  
 $(PROJ_NAME): $(OBJ) $(MAIN_OBJECT)
-	$(CC) -o $(BIN_DIR)/$@ $^
+	$(CC) -o $(BIN_DIR)/$@ $^ $(LINKER_FLAGS)
  
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE_DIR)/%.h
 	$(CC) -o $@ $< $(CC_FLAGS)
