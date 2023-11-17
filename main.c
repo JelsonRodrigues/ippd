@@ -10,15 +10,6 @@ int32_t main() {
     printf("ERROR reading n Value\n");
   }
 
-  int64_t result = 0;
-  #pragma omp parallel shared(result, n)
-  {
-    #pragma omp single
-    {
-      result = fibonacci(n);
-    }
-  }
-
-  printf("FIBO: %hhd = %ld\n", n, result);
+  printf("FIBO: %hhd = %ld\n", n, run_parallel_fibonacci(n));
   return EXIT_SUCCESS;
 }

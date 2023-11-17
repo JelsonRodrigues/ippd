@@ -17,3 +17,16 @@ int64_t fibonacci(uint8_t n) {
   #pragma omp taskwait
   return a + b;
 }
+
+int64_t run_parallel_fibonacci(uint8_t n){
+  int64_t result = 0;
+  #pragma omp parallel shared(result, n)
+  {
+    #pragma omp single
+    {
+      result = fibonacci(n);
+    }
+  }
+
+  return result;
+}
