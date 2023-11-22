@@ -1,5 +1,5 @@
 # Project name
-PROJ_NAME=OpenMP_Test
+PROJ_NAME=OpenMP_IPPD
 
 # Directories
 SRC_DIR=./src
